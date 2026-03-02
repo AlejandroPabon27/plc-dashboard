@@ -1,0 +1,319 @@
+/* =============================================================================
+   src/app/globals.css — Paleta industrial oscura + utilidades glassmorphism
+   Dashboard PLC profesional — Costayaco
+   ============================================================================= */
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* --- Colores base (modo claro) --- */
+  --background: oklch(0.98 0.002 240);
+  --foreground: oklch(0.15 0.02 240);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0.02 240);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0.02 240);
+  --primary: oklch(0.55 0.18 196);
+  /* Cyan industrial */
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.92 0.005 240);
+  --secondary-foreground: oklch(0.2 0.02 240);
+  --muted: oklch(0.93 0.005 240);
+  --muted-foreground: oklch(0.5 0.01 240);
+  --accent: oklch(0.92 0.01 196);
+  --accent-foreground: oklch(0.2 0.02 240);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.88 0.005 240);
+  --input: oklch(0.88 0.005 240);
+  --ring: oklch(0.55 0.18 196);
+  --radius: 0.625rem;
+
+  --sidebar-background: oklch(0.15 0.015 240);
+  --sidebar-foreground: oklch(0.85 0.01 240);
+  --sidebar-primary: oklch(0.6 0.18 196);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.2 0.015 240);
+  --sidebar-accent-foreground: oklch(0.85 0.01 240);
+  --sidebar-border: oklch(0.25 0.01 240);
+  --sidebar-ring: oklch(0.6 0.18 196);
+}
+
+.dark {
+  --background: oklch(0.09 0.012 240);
+  /* Slate-950 equivalente */
+  --foreground: oklch(0.92 0.008 240);
+  --card: oklch(0.12 0.012 240);
+  --card-foreground: oklch(0.92 0.008 240);
+  --popover: oklch(0.12 0.012 240);
+  --popover-foreground: oklch(0.92 0.008 240);
+  --primary: oklch(0.65 0.18 196);
+  /* Cyan brillante */
+  --primary-foreground: oklch(0.1 0.01 240);
+  --secondary: oklch(0.18 0.012 240);
+  --secondary-foreground: oklch(0.85 0.008 240);
+  --muted: oklch(0.16 0.01 240);
+  --muted-foreground: oklch(0.52 0.01 240);
+  --accent: oklch(0.2 0.015 196);
+  --accent-foreground: oklch(0.9 0.01 196);
+  --destructive: oklch(0.5 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.22 0.01 240);
+  --input: oklch(0.22 0.01 240);
+  --ring: oklch(0.65 0.18 196);
+
+  --sidebar-background: oklch(0.07 0.012 240);
+  --sidebar-foreground: oklch(0.88 0.008 240);
+  --sidebar-primary: oklch(0.65 0.18 196);
+  --sidebar-primary-foreground: oklch(0.1 0.01 240);
+  --sidebar-accent: oklch(0.14 0.012 240);
+  --sidebar-accent-foreground: oklch(0.88 0.008 240);
+  --sidebar-border: oklch(0.18 0.01 240);
+  --sidebar-ring: oklch(0.65 0.18 196);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar-background: var(--sidebar-background);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+* {
+  box-sizing: border-box;
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Selection highlight ───────────────────────────────────────────────────── */
+::selection {
+  background: color-mix(in srgb, var(--primary) 30%, transparent);
+  color: var(--foreground);
+}
+
+/* ── Focus-visible ring for accessibility ──────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Glassmorphism utility ─────────────────────────────────────────────────── */
+.glass {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: color-mix(in srgb, var(--card) 75%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 1px 2px -1px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.glass:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  border-color: color-mix(in srgb, var(--border) 80%, transparent);
+}
+
+/* ── Scrollbar personalizado ───────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted-foreground);
+  border-radius: 999px;
+  opacity: 0.5;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground);
+  opacity: 0.7;
+}
+
+/* ── Pulsing glow para indicador live ─────────────────────────────────────── */
+@keyframes live-pulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+  }
+
+  50% {
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+}
+
+.live-indicator {
+  animation: live-pulse 2s ease-in-out infinite;
+}
+
+/* ── Highlight de fila nueva ───────────────────────────────────────────────── */
+@keyframes row-highlight {
+  from {
+    background-color: color-mix(in srgb, oklch(0.65 0.18 196) 12%, transparent);
+  }
+
+  to {
+    background-color: transparent;
+  }
+}
+
+.row-new {
+  animation: row-highlight 3s ease-out forwards;
+}
+
+/* ── Fade-in para cards ───────────────────────────────────────────────────── */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.4s ease-out both;
+}
+
+/* ── Tabular numbers for stats ─────────────────────────────────────────────── */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Industrial grid pattern background (subtle) ──────────────────────────── */
+.dark body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+/* ── Sidebar glow effect ──────────────────────────────────────────────────── */
+.dark aside {
+  box-shadow: 1px 0 24px -8px rgba(6, 182, 212, 0.08);
+}
+
+/* ── Card left border accents ─────────────────────────────────────────────── */
+.border-l-cyan-500 {
+  border-left-color: #06b6d4;
+}
+
+.border-l-emerald-500 {
+  border-left-color: #10b981;
+}
+
+.border-l-violet-500 {
+  border-left-color: #8b5cf6;
+}
+
+.border-l-amber-500 {
+  border-left-color: #f59e0b;
+}
+
+.border-l-red-500 {
+  border-left-color: #ef4444;
+}
+
+/* ── Alarm card pulse (borde rojo intermitente) ───────────────────────────── */
+@keyframes alarm-pulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 12px 2px rgba(239, 68, 68, 0.15);
+  }
+}
+
+.alarm-card {
+  animation: alarm-pulse 2s ease-in-out infinite;
+}
+
+/* ── Alarm icon shake ─────────────────────────────────────────────────────── */
+@keyframes alarm-shake {
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  10% {
+    transform: rotate(-8deg);
+  }
+
+  20% {
+    transform: rotate(8deg);
+  }
+
+  30% {
+    transform: rotate(-5deg);
+  }
+
+  40% {
+    transform: rotate(5deg);
+  }
+
+  50% {
+    transform: rotate(0deg);
+  }
+}
+
+.alarm-icon {
+  animation: alarm-shake 3s ease-in-out infinite;
+}

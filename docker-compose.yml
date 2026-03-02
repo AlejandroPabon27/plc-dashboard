@@ -1,0 +1,29 @@
+# =============================================================================
+# docker-compose.yml — PLC Dashboard (conecta a PostgreSQL en QNAP)
+# =============================================================================
+# La base de datos PostgreSQL corre en Docker dentro de la QNAP.
+# Este compose solo levanta la aplicación Next.js.
+
+services:
+    # ---------------------------------------------------------------------------
+    # Aplicación Next.js — PLC Dashboard
+    # ---------------------------------------------------------------------------
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: plc-app
+        restart: unless-stopped
+        ports:
+            - "3000:3000"
+        environment:
+            # Apunta a la DB PostgreSQL en la QNAP (misma red local)
+            DATABASE_URL: postgresql://postgres:password@host.docker.internal:5432/labdb
+            NEXT_PUBLIC_USE_MOCK: "false"
+            NODE_ENV: production
+        networks:
+            - plc-network
+
+networks:
+    plc-network:
+        driver: bridge
